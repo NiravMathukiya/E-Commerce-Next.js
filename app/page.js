@@ -1,103 +1,44 @@
-import Image from "next/image";
+import DealsOfTheMonth from "@/components/DealOfTheDay";
+import Footer from "@/components/Footer";
+import HeroSection from "@/components/HeroSection";
+import InstagramPost from "@/components/InstagramPost";
+import Logos from "@/components/Logos";
+import Navbar from "@/components/Navbar";
+import NewArrivals from "@/components/NewArrivals";
+import NewSeletter from "@/components/NewSeletter";
+import SpecialProduct from "@/components/SpecialProduct";
+import TestimonialCarousel from "@/components/TestimonialCarousel";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+  const companiesdata = [
+    "https://media-hosting.imagekit.io//4d3373c5afec4f77/logo.png?Expires=1836892100&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=JW6hekFRAy1BJ5oCzOm0T2fvce3G3piUpi9ESBQjJ9uuAa2oxmVupYB9vm2rJxQCgYSXqr-ketjtLXzezMynSKGFoZKWvfHkEoYp88LSH-hK0Ur85b~W2On5nanGmkvvFiwrfEgjaol-C7iTg5-xA5PfDuBjIT3SnI4C9yBKnR1v7y3Z-oTWzMxxtgZxyOvxAPZhKTTTFUiW-EAXXoc1ZKN4oMusAbtVhC5JJLvy7io1Wpcw-pRFXZ20a9pNsH-nwu89vTYm0LCTczBRtP0ZIi76XyzYf17gDkY3JDTkIxLZxKhoMPRPISCIYtrsFTAYdm8kIq~EgoIDNDeVnBGVbw__",
+    "https://media-hosting.imagekit.io//5de38b5491d74ca6/logo%20(1).png?Expires=1836892098&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=QgUQwOsjnjpDvpXgyqh1s9ZZiq216FsnjE~hsA0cg7b5ug9~YXM-xBSwyJPsuH7BcdloSGLO38rZPjvr4GiO46hiBPFgiCZKgRQprgX2rmd-S9v9V-GBV9SdgA5-AQwTB5bQ4Kh5XJQo5LdqW0iDOhHkjHabD~2UWFaqqVaXeyo0q7ufdL2F34-IG-y1JJzF701z8GXGvD-7ZryD5-rCIRQWEFgnABBsx5QLNbdOeYzjim4Ysyc4YEM-JL2g0zKzKdwfjiiYcqoeZi3e-xLTob2PZGLtHQ3ulb46MH2eMNdCmHiRxM794DFZ~uqeKa~UGQfGQXq~Y3eGz-wHpEgQoQ__",
+    "https://media-hosting.imagekit.io//5afac66235724b73/logo%20(2).png?Expires=1836892097&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=JBt1nfRzBlENEwLRmJ8WxpHrM3-XUW9~P5LNy4vtud04UOrVs69kHSCk1zVYl~tW3dFjMEWU2COoCAj2gpj0wfE9dAluax56im9nSd3-qtrNLfM5HuWUKdqYPJ7o0oXPPxEtMXqhj0S3ocu-aptpwWqj3R-fgVfkqi22tYb3UFuW2rALAKt9S1bOXJUw8IdTlnTz2D~Vvh4wvsGIrqLPfSogHM2iPRNE~CeYrYrrBFhUk1x~PRGl3QKLMY~VtvTA4uHAzg4ESvUlSks9jfGF2RvAAfmBSz1sLzxtt1qTsNbulJex-DVfD41YMK8utAdPnO9fX038Og0sZuGen-dlAQ__",
+    "https://media-hosting.imagekit.io//b5217858a4d7411b/logo%20(3).png?Expires=1836892095&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=mr6bbEF58UiTssZkp2AKRoMEohSzmjp~EUt56c7CeVqbEBPyb4qp7CB6~Q9HeJDoScXfaa0CQ5gQCvBYQL8ZMmHxdmc5BMSwra27FZHDtsrUeie5KHkiTB~d4q84iQAh-MuTVsNT06abBAg08j703qvfxOvbBawL~6r9pMcMpV1T7wTA4nKQFwv53C7fzNwqrCZBY56bK7aoLua~3s95NkoW1XaeLjeDjsBe9bMV-yZvlI8e6xHIc2Sq5tFhBa7C5Fp8vKAdBlGpKI1bI9m5GaRwtUBr5U9uytYySCosOdarnYIsCiHQnWKFhvZk6nGD9BEOFZzRbuUOt8v-zK-NoQ__",
+    "https://media-hosting.imagekit.io//9ac1190f14d34704/logo%20(4).png?Expires=1836892095&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=LHQPHlFDDAuJ5RG7OPyt~3J76HCAAGVKBSHh4XhorTAhus5o99giTda2-Op6qCBD7HwnQAUtJeSia1suQGdJI43EFj0IaXw3KAvq7PytcN7IAff9cztIBANPe1QqJpvTu7JgbvdAlUz8rfrjxMLNjg0ZXpK3KLyscAdb3OAUVKVmLXbHZZTpQqht187if6yFCNXGg9Irym9zQoA8T3SWGPIBjQBwQq3pDgwXCNVQraQNDmpUkB11ue42wZGAEkwqe7pJ~YOyO5l1xqzOGLGLMiIlJ5t9lhCZSD0bNQ9Gaa2jQavKy2uHOHJAJk95zn3Qt9ESFb5qaMT7Q0g4wPaavQ__"
+  ]
+
+  const fecturedData = [
+    "https://media-hosting.imagekit.io//2ce50d1f51e944a9/feature%20(1).png?Expires=1836907605&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=Wi~TXZwmFnoujOOHgvF4x~E4GXRnu7OpiWaSB8QPChmPlKk~Z0PcGkxxpDXDpLEdJrQqKI0hp4q-e~EffYRDuNxu6Wg1m97sr3zrE8ZIo8BxcN7STSe2fZt33lCXdiNdI6RK2xEWBjfga1ln65mIAJunAXiBStrmy1bMUrrLHOhfpVAZWeBkXoqjhgF54JhrvlPJ4VXSToYuEBjD8yVX-fUM~MHRNOiWZ7-XY3XJp1wadeeFfG-nefbBVetVHf8JL9wFhDGwJCKl4QS7kV-8QGMLtJc~n52JsWOsKaotym~BUzwfKf~DxTojERuMceOeSC~Avo~ITm~ZonydloguAw__",
+    "https://media-hosting.imagekit.io//cf957d0d2a724009/feature.png?Expires=1836907605&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=TcOW-9W~kB5dlw4jAleKjuQ1ZH8ewvpZ84bPxCmLVrVEV~ktXs-A3VCACuMPRJWTYTMhKxQXQR7MftUqdXrbxiGzYZZ05SB1-KN-ZOcKGVO3WBU1eQWcffYufcE~LRgDpcjzfP~QCCxm40JAuiZxaRjJErOlXMVmScEMARPWj7tirwMHcUhveczlLVZd~si0Ny0mNYVFJONUkPQiHNFDJVEY~G1Z3ugG5y-9cZ554LyGiTIKr501dUcA3Sl3tSVaVyfWcIHEt2zdNbm4G~q77xRJ-tRVlrBWxFscYl9vXENfC6a29lwBS3Yu18nJ~IMxe6lXuke0S2zVz2dlwpWZwg__",
+    "https://media-hosting.imagekit.io//4fde622455f4479b/feature%20(2).png?Expires=1836907604&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=zoSPKjgVpDS20QnTKQsYaZhmWqaCcsdOPaKStqdU3YbdG4PwqGXOtU3TVkVbxzMx-~nUJ3Y1BC89jSO6fP0grb4HvY~~BDoIoNNsUV0WhRjmlfXelosHYHpXFGaG2jNc-OQZAptl-NL1sewDTNmMevoOG-EBkUHAQzD3~GNfrCPxbCUge~JY~SlRE~1xBrZ4oGdIM7RfCxbGD81aT6TKUdHWp~a3QtPV-m~7t9FSMpBd2MQjGMoYpFm-V0EIgG90jOB0BUDasuG-FgFWqg~ZATzwJvNL4OYbzM3NnesITgD99OEEDl25UAqnYicGnXbBDCXeUXwdy6SsL8cccAaEyA__",
+    "https://media-hosting.imagekit.io//8c7a538d8c094ea9/feature%20(3).png?Expires=1836907604&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=sxcwbsZh6RjPb-TUT6f4aEWTZh~To32KKMpOaDeBncDsJZJqUZBl2wd92kQKuWGJHDe~m80~ucO7H~azVZyJIejimS-B~KHjSBSF3ituVTYHmbeHqZBsAbetFAdC1HH~CLIu1IKg07I0rxrs~RRR1iMnwm82WFfcwJNBXnMe7QQKzNbk1JSGp744wjrFXaT7UJDCSo7OTkAHEhvb51LMARyzEX6T7f~m4G55kVELW6ta3~fUPTzUTFFwDIEJObFgyPioROBKhiQWD-rXtD1HT5-kR03wVU-gG65rVF1OyBymihPD9TF1nv8a-o1eZ589GlJIXD77tnslAyObl2hplw__"
+  ]
+
+  return (
+    <div>
+      <Navbar />
+      <HeroSection />
+      <Logos data={companiesdata} />
+      <DealsOfTheMonth />
+      <NewArrivals />
+      <SpecialProduct />
+      <Logos data={fecturedData} num="34" />
+      <InstagramPost />
+      <TestimonialCarousel />
+      <NewSeletter />
+      <Footer />
     </div>
   );
 }
