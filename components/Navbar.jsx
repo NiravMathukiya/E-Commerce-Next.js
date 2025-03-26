@@ -1,15 +1,29 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import { useSelector } from 'react-redux';
 import { profile } from '@/images/index'; // Ensure the correct path
+import { getCookie, deleteCookie } from 'cookies-next';
+import { useRouter } from 'next/navigation';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [token, setToken] = useState(null);
     const user = useSelector((state) => state.auth.user);
+    const router = useRouter(); // Initialize the router
+
+    useEffect(() => {
+        const storedToken = getCookie('token');
+        setToken(storedToken);
+    }, []);
+
+    const signOut = () => {
+        deleteCookie('token'); // Delete the token cookie
+        router.push('/'); // Redirect to the home page
+    };
 
     return (
         <div className='max-w-6xl md:mt-6 h-20 p-2 px-5 mx-auto flex justify-between items-center relative'>
@@ -31,12 +45,12 @@ const Navbar = () => {
                 <Link href='/new-arrivals' className='cursor-pointer hover:text-gray-600'>New Arrivals</Link>
                 <Link href='/packages' className='cursor-pointer hover:text-gray-600'>Packages</Link>
 
-                {user ? (
-                    <div>
+                {token ? (
+                    <div className='flex items-center gap-4'>
                         <Link href='/profile' className='bg-black/80 h-12 w-12 rounded-full shadow-lg hover:bg-black transition-all duration-300 overflow-hidden flex items-center justify-center'>
-                            <Image src="https://media-hosting.imagekit.io//ef1313a8e70049b4/profile.png?Expires=1837229312&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=P9g3BB~8aXGTNZU2rtVonXeMXJx3I4tS4R1iVNb7d5w~Jp01B6wiPV2hYE0FLpo4DCw0ViX69sOa76MUaxYAmC2c3wrdP2~yLfolfmX5eSaNoY3VwJ~REUgBGACJKHLp3g~dzp6e16XAIVHKiCXeOZiUk7MNA9Tse61g276P9UhPfhICyPSSVp6k0P2p6hO16RFqs5NpjlxNqKt~2DRCTHc0LgQuaiN5tkvmGbH7SjNa85KAs2-S-6-ixwG1XdQ8y~CD1E1xFcF6FmCfDjaN555bjmQw4KtlFRD9oaa3aa3L00GUkhTzEaRRkyQxUAcs28LkTUoZGc3a3j4K7IgF~w__" alt='User Profile' width={48} height={48} className='object-cover rounded-full' />
+                            <Image src={profile} alt='User Profile' width={48} height={48} className='object-cover rounded-full' />
                         </Link>
-                        <button onClick={() => signOut()}>Sign Out</button>
+                        <button onClick={signOut} className='bg-red-500 px-3 py-2 font-bold text-md rounded-xl'>Sign Out</button>
                     </div>
                 ) : (
                     <span>
@@ -67,7 +81,7 @@ const Navbar = () => {
                     <Link href='/new-arrivals' className='cursor-pointer hover:text-gray-600' onClick={() => setIsOpen(false)}>New Arrivals</Link>
                     <Link href='/packages' className='cursor-pointer hover:text-gray-600' onClick={() => setIsOpen(false)}>Packages</Link>
 
-                    {user ? (
+                    {token ? (
                         <Link href='/profile' className='block text-center bg-black/80 py-2 text-white text-sm rounded-md shadow-lg hover:bg-black transition-all duration-300' onClick={() => setIsOpen(false)}>
                             Profile
                         </Link>

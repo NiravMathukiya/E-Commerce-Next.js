@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { cookies } from "next/headers";
 
 export async function POST(req) {
     try {
@@ -23,6 +24,15 @@ export async function POST(req) {
 
         // Remove password before sending response
         const { password: _, ...userWithoutPassword } = user;
+
+        (await cookies()).set("token", {
+            value: token,
+            expires: new Date(Date.now() + 7 * 24 * 60 * 60),
+            path: "/",
+            sameSite: "strict",
+            httpOnly: true
+        });
+
 
         return NextResponse.json({
             message: "Login successful!",
